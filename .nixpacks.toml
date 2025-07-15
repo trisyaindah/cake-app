@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["php82", "php82Packages.composer", "mysql", "nodejs_20"]
+nixPkgs = ["php82", "php82Packages.composer", "mysql"]
 
 [phases.build]
 cmds = ["composer install --no-interaction --prefer-dist --optimize-autoloader"]
