@@ -1,13 +1,16 @@
 #!/bin/bash
 
-# Generate app key (jika belum ada)
-if [ -z "$APP_KEY" ]; then
+# Generate APP_KEY kalau belum ada
+if [ ! -f bootstrap/cache/config.php ]; then
   php artisan key:generate
 fi
 
-# Cache config
+# Jalankan migrate jika perlu
+php artisan migrate --force || true
+
+# Cache config dan route
 php artisan config:cache
 php artisan route:cache
 
-# Jalankan Laravel
+# Jalankan Laravel pakai host & port yang diminta Railway
 php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
