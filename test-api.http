@@ -1,0 +1,9 @@
+### POST - Buat Order Baru
+POST http://localhost:8000/api/orders
+Content-Type: application/json
+
+{
+    "cake_id": 1,
+    "customer_name": "Trisya",
+    "address": "Jl. Kue No. 123"
+}

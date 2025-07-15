@@ -1,0 +1,47 @@
+<h2>Form Pemesanan Kue</h2>
+
+<form #orderForm="ngForm" (ngSubmit)="submitOrder(orderForm)">
+  <label>Nama Pemesan:</label>
+  <input
+    type="text"
+    name="customer_name"
+    [(ngModel)]="form.customer_name"
+    required
+    minlength="3"
+    #customerName="ngModel"
+  />
+  <div *ngIf="customerName.invalid && customerName.touched" style="color:red;">
+    Nama wajib diisi dan minimal 3 huruf
+  </div>
+  <br />
+
+  <label>Alamat:</label>
+  <textarea
+    name="address"
+    [(ngModel)]="form.address"
+    required
+    minlength="5"
+    #address="ngModel"
+  ></textarea>
+  <div *ngIf="address.invalid && address.touched" style="color:red;">
+    Alamat wajib diisi minimal 5 huruf
+  </div>
+  <br />
+
+  <label>Pilih Kue:</label>
+  <select
+    name="cake_id"
+    [(ngModel)]="form.cake_id"
+    required
+    #cakeId="ngModel"
+  >
+    <option value="">-- Pilih Kue --</option>
+    <option *ngFor="let cake of cakes" [value]="cake.id">{{ cake.name }}</option>
+  </select>
+  <div *ngIf="cakeId.invalid && cakeId.touched" style="color:red;">
+    Pilih salah satu kue
+  </div>
+  <br />
+
+  <button type="submit" [disabled]="orderForm.invalid">Pesan</button>
+</form>

@@ -1,0 +1,36 @@
+<h2>🍰 Katalog Kue</h2>
+<div class="cake-grid">
+    <div class="cake-card" *ngFor="let cake of cakes()">
+        <h3>{{ cake.name }}</h3>
+        <p>Harga: <strong>Rp{{ cake.price | number }}</strong></p>
+    </div>
+</div>
+
+<hr />
+
+<!-- -->
+<h2>🧾 Daftar Pesanan</h2>
+<table border="1" style="width: 100%; border-collapse: collapse;" class="order-table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Nama Pemesan</th>
+        <th>Alamat</th>
+        <th>Nama Kue</th>
+        <th>Aksi</th> <!-- Tambahan kolom aksi -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders(); let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ order.customer_name }}</td>
+        <td>{{ order.address }}</td>
+        <td>{{ order.cake?.name }}</td>
+        <td>
+            <button [routerLink]="['/orders/edit', order.id]">Edit</button>
+            <button (click)="deleteOrder(order.id)">Hapus</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+

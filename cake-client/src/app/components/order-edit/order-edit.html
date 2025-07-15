@@ -1,0 +1,21 @@
+<h2>✏️ Edit Pesanan</h2>
+<<form (ngSubmit)="submitForm()" #orderForm="ngForm">
+  <label>Nama Pemesan:
+    <input [(ngModel)]="order.customer_name" name="name" required />
+  </label>
+  <br />
+  <label>Alamat:
+    <input [(ngModel)]="order.address" name="address" required />
+  </label>
+  <br />
+  <label>Kue:
+    <select [(ngModel)]="order.cake_id" name="cake_id" required>
+      <option *ngFor="let cake of cakes" [value]="cake.id">
+        {{ cake.name }}
+      </option>
+    </select>
+  </label>
+  <br /><br />
+  <button type="submit" [disabled]="orderForm.invalid">Simpan</button>
+  <button type="button" (click)="router.navigate(['/'])">Batal</button>
+</form>
