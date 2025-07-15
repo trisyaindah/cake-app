@@ -1,3 +1,15 @@
+name: Laravel CI
+
+on:
+  push:
+    paths:
+      - '**.php'
+      - 'composer.json'
+      - 'artisan'
+  pull_request:
+  workflow_dispatch:
+
+
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
